@@ -1,0 +1,64 @@
+-- GUI Principal
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local PularOnda = Instance.new("TextButton")
+local Velocidade = Instance.new("TextButton")
+local Title = Instance.new("TextLabel")
+
+-- Proteção para executores
+ScreenGui.Parent = game:GetService("CoreGui")
+
+-- Frame
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(150, 0, 0) -- Vermelho escuro
+Frame.Position = UDim2.new(0.35, 0, 0.3, 0)
+Frame.Size = UDim2.new(0, 300, 0, 200)
+Frame.Active = true
+Frame.Draggable = true
+
+UICorner.Parent = Frame
+
+-- Título
+Title.Parent = Frame
+Title.Text = "Fujo do Tsunami 🧠🌊"
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.BackgroundTransparency = 1
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+Title.Font = Enum.Font.GothamBold
+Title.TextScaled = true
+
+-- Botão Pular Onda
+PularOnda.Parent = Frame
+PularOnda.Text = "PULAR ONDA"
+PularOnda.Position = UDim2.new(0.1, 0, 0.3, 0)
+PularOnda.Size = UDim2.new(0.8, 0, 0, 45)
+PularOnda.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+PularOnda.TextColor3 = Color3.fromRGB(255,255,255)
+PularOnda.Font = Enum.Font.GothamBold
+PularOnda.TextScaled = true
+
+-- Botão Velocidade
+Velocidade.Parent = Frame
+Velocidade.Text = "VELOCIDADE"
+Velocidade.Position = UDim2.new(0.1, 0, 0.6, 0)
+Velocidade.Size = UDim2.new(0.8, 0, 0, 45)
+Velocidade.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+Velocidade.TextColor3 = Color3.fromRGB(255,255,255)
+Velocidade.Font = Enum.Font.GothamBold
+Velocidade.TextScaled = true
+
+-- Funções
+PularOnda.MouseButton1Click:Connect(function()
+    local player = game.Players.LocalPlayer
+    local char = player.Character or player.CharacterAdded:Wait()
+    local hrp = char:WaitForChild("HumanoidRootPart")
+    hrp.CFrame = hrp.CFrame + Vector3.new(0, 120, 0) -- sobe o jogador
+end)
+
+Velocidade.MouseButton1Click:Connect(function()
+    local player = game.Players.LocalPlayer
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoid = char:WaitForChild("Humanoid")
+    humanoid.WalkSpeed = 40 -- velocidade aumentada
+end)
